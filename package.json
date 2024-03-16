@@ -7,7 +7,12 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "ts-node src/index.ts",
     "build": "tsc",
-    "serve": "node dist/index.js"
+    "serve": "node dist/index.js",
+    "typeorm": "ts-node -r dotenv/config -r tsconfig-paths/register -r ts-node/register ./node_modules/typeorm/cli.js --config ./src/conf/ormconfig",
+    "db:migration:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -d src/conf/ormconfig.ts",
+    "db:migration:run": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/conf/ormconfig.ts",
+    "db:migration:revert": "ts-node -r dotenv/config -r tsconfig-paths/register node_modules/typeorm/cli.js --config ./src/conf/ormconfig migration:revert",
+    "db:seed": "ts-node -r dotenv/config -r tsconfig-paths/register ./node_modules/typeorm-seeding/dist/cli.js --configName ./src/conf/ormconfig seed"
   },
   "repository": {
     "type": "git",
@@ -23,8 +28,23 @@
   "dependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.28",
+    "cors": "^2.8.5",
     "express": "^4.18.3",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
     "ts-node": "^10.9.2",
+    "typeorm": "^0.3.20",
+    "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "pg": "^8.11.3",
+    "reflect-metadata": "^0.2.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "typeorm": "^0.3.20",
     "typescript": "^5.4.2"
   }
 }

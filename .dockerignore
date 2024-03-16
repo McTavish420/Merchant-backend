@@ -1,0 +1,15 @@
+.vscode
+conf
+doc
+migrations
+output
+src
+test
+work
+.editorconfig
+.env
+.eslint
+.gitignore
+*.log
+docker-compose.yaml
+README.md
