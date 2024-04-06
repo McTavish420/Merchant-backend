@@ -3,6 +3,7 @@ import { PostgresConnectionOptions } from 'typeorm/driver/postgres/PostgresConne
 
 import * as globals from '../globals'
 import { DataSource } from 'typeorm';
+import { NamingStrategy } from '../support/typeorm/naming-strategy';
 
 const EXT = path.extname(__filename);
 
@@ -19,6 +20,7 @@ const main: PostgresConnectionOptions = {
     bigNumberStrings: true,
   },
   migrations: globals.EXT === '.ts' ? ['migrations/*.ts'] : [],
+  namingStrategy: new NamingStrategy(),
   entities: [
     path.join(__dirname, `../model/entity/*${globals.EXT}`),
   ],
