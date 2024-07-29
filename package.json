@@ -8,11 +8,11 @@
     "start": "ts-node src/index.ts",
     "build": "tsc",
     "serve": "node dist/index.js",
-    "typeorm": "ts-node -r dotenv/config -r tsconfig-paths/register -r ts-node/register ./node_modules/typeorm/cli.js --config ./src/conf/ormconfig",
-    "db:migration:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate -d src/conf/ormconfig.ts",
-    "db:migration:run": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/conf/ormconfig.ts",
-    "db:migration:revert": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert -d src/conf/ormconfig.ts",
-    "db:seed": "./node_modules/.bin/ts-node ./node_modules/typeorm-seeding/dist/cli.js --configName ./src/conf/ormconfig seed"
+    "typeorm": "node_modules/.bin/ts-node -r tsconfig-paths/register node_modules/typeorm/cli.js",
+    "db:migration:generate": "yarn typeorm migration:generate -d src/conf/ormconfig.ts",
+    "db:migration:run": "yarn typeorm migration:run -d src/conf/ormconfig.ts",
+    "db:migration:revert": "yarn typeorm migration:revert -d src/conf/ormconfig.ts",
+    "db:seed": "node_modules/.bin/ts-node node_modules/typeorm-seeding/dist/cli.js --configName src/conf/ormconfig seed"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,7 @@
     "@types/node": "^20.11.28",
     "cors": "^2.8.5",
     "express": "^4.18.3",
+    "module-alias": "^2.2.3",
     "pg": "^8.11.3",
     "pluralize": "^8.0.0",
     "reflect-metadata": "^0.2.1",
@@ -49,5 +50,8 @@
     "typeorm": "^0.3.20",
     "typeorm-seeding": "^1.6.1",
     "typescript": "^5.4.2"
+  },
+  "_moduleAliases": {
+  "@src": "dist"
   }
 }
